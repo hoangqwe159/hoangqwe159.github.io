@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bản đồ 87 mã theo H</title>
+<style>
+:root{--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif;
+--color-fg:#1d1f24;--color-fg-muted:#5f6570;--color-bg:#f7f7f5;--color-panel:#fff;--color-border-line:#e3e3df;--color-ok:#1f8a4c;--color-warn:#b7791f;--color-bad:#c0392b;
+--cds-font-size-caption:12px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:28px;--cds-font-weight-medium:600;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:24px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:14px;--cds-pad-lg:18px;--cds-radius:8px;
+--cds-chart-muted:#b4b8c0;--cds-chart-status-critical:#d64545;--cds-chart-grid:#ececea;--cds-surface-popover:#fff;--cds-border:#dcdcd8;--cds-shadow-popover:0 4px 16px rgba(0,0,0,.12);--cds-text-secondary:#5f6570;--cds-dur-slow:.3s}
+@media (prefers-color-scheme: dark){:root{--color-fg:#e8e9ec;--color-fg-muted:#a0a5ae;--color-bg:#16181c;--color-panel:#1f2227;--color-border-line:#33373e;--color-ok:#5fcf8d;--color-warn:#e2b45c;--color-bad:#f07a6e;
+--cds-chart-muted:#5c626c;--cds-chart-grid:#2a2d33;--cds-surface-popover:#262a30;--cds-border:#3a3f47;--cds-text-secondary:#a0a5ae;color-scheme:dark}}
+body{margin:0;background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans);font-size:14px}
+#dash-root{max-width:1400px;margin:0 auto;padding:24px max(16px,3vw)}
+.dash-skeleton{color:transparent}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+
+<script>
+window.__DATA = {stocks: [{"nganh":"Ngân hàng","ma":"VCB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Có bố","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Không","c4":"Một phần","c5":"Có","diem":6,"gia":53.5,"so_voi_dinh":-29,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo H, VCB là trụ nhóm 1 có \"bố\" Nhà nước, là con nợ ruột (co_bo) đang làm vòi tín dụng chỉ định cho dự án trọng điểm. Chu kỳ nợ hiện tại: tín dụng vẫn tăng, con nợ ghẻ (trái phiếu, một khách hàng lớn) đang bị dự phòng mạnh, và ngân hàng đang tăng vốn bằng cổ phiếu riêng lẻ và trái phiếu cấp 2. Giá 53,5 đã giảm…"},{"nganh":"Ngân hàng","ma":"BID","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Có bố","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Không","c4":"Một phần","c5":"Có","diem":6,"gia":31.7,"so_voi_dinh":-37.7,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"BID là ngân hàng 'có bố' Nhà nước: Nhà nước nắm 76,73%, ngân hàng làm kênh tín dụng đầu tư phát triển. Tín dụng vẫn tăng khoảng 14% mỗi năm, nhưng tiền gửi tăng chậm hơn, vốn đắt hơn, nợ xấu tăng và bao phủ giảm về khoảng 73%. Lợi nhuận đẹp chủ yếu nhờ giảm trích dự phòng. Giá giảm 37,7% từ đỉnh, đã thủng đáy 60…"},{"nganh":"Ngân hàng","ma":"CTG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Có bố","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Một phần","c5":"Có","diem":7,"gia":30.05,"so_voi_dinh":-26.5,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"CTG là ngân hàng 'có bố' (Nhà nước 64,46%, MUFG 19,73%), lãi Q3 cao nhất ngành và nguồn vốn bền. Nhưng ngân hàng đang cần vốn (trái phiếu ra công chúng, cơ cấu vốn Nhà nước), nguồn vốn đắt lên và nợ nhóm 2-4 tăng. Giá ở vùng giữa, đang được giữ trên đáy 28,75. Theo khung của H, bồn tín dụng chưa đầy nên chưa có lý…"},{"nganh":"Ngân hàng","ma":"MBB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Có bố","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Không","c4":"Một phần","c5":"Có","diem":6,"gia":18.9,"so_voi_dinh":-18.6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo khung của H, MBB là ngân hàng có \"bố\" (co_bo) thuộc nhóm 2 top ngành, đang ở pha mở rộng nợ mạnh nhất chu kỳ, kèm nhu cầu vốn lớn. Người đặt giá (Viettel, SCIC, DN quốc phòng) có lý do cần giá cao để tăng vốn và thoái vốn. Nhưng bồn tín dụng toàn thị trường mới 1/5 tín hiệu và khối ngoại đang xả. Giá ở vùng…"},{"nganh":"Ngân hàng","ma":"TCB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Sân sau","vung":"Giữa","c1":"Có","c2":"Có","c3":"Không","c4":"Một phần","c5":"Một phần","diem":6,"gia":21.4,"so_voi_dinh":-13.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"TCB là ngân hàng tư nhân 'sân sau' của Masan và Masterise, đang là 'con nợ ruột' trong chu kỳ tín dụng chọn lọc: cho vay hạ tầng, lãi kỷ lục, đủ vốn. Theo khung của H, giá đang được giữ quanh đợt chia cổ tức cổ phiếu 50% trong khi bồn tín dụng chung chỉ 1/5. Vì vậy TCB đang ở vùng giữa, BCTC đẹp chưa phải tín hiệu…"},{"nganh":"Ngân hàng","ma":"VPB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Có bố","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Không","c4":"Một phần","c5":"Có","diem":6,"gia":21.2,"so_voi_dinh":-13.5,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo khung của H, VPB là con nợ lớn có 'bố' ngoại (SMBC) và được Nhà nước giao nhận GPBank. Ngân hàng đang tăng nợ nhanh bằng tiền vay đắt. Giá vừa được kéo lên 24,5 theo các 'cớ' SMBC, FTSE và BCTC đẹp, rồi tự giảm về 21,2 trong bối cảnh bồn tín dụng mới đạt 1/5 và margin toàn thị trường ở đỉnh. Đây là vùng giữa,…"},{"nganh":"Ngân hàng","ma":"ACB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Giữa","c1":"Không","c2":"Một phần","c3":"Không","c4":"Một phần","c5":"Không","diem":2,"gia":20.25,"so_voi_dinh":-14.7,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, ACB là ngân hàng tư nhân thuộc nhóm 2 top ngành, không có 'bố' và không phục vụ tập đoàn nào. Ngân hàng đang tự mở rộng nợ bằng vốn thị trường đắt và ngắn hạn, trong khi chất lượng con nợ bắt đầu giảm. Lợi nhuận đẹp nhưng giá cổ phiếu đang tự giảm vì khối ngoại rút và bồn tín dụng chưa đầy. Thị…"},{"nganh":"Ngân hàng","ma":"HDB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Sân sau","vung":"Đỉnh","c1":"Có","c2":"Một phần","c3":"Không","c4":"Một phần","c5":"Có","diem":6,"gia":21.8,"so_voi_dinh":-6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, HDB là ngân hàng sân sau của Sovico nhưng được Nhà nước giao việc (Vikki Bank, dự án trọng điểm). Vì vậy ngân hàng được room và vay được nhiều, giá giữ gần đỉnh trong khi ngành giảm. Mặt trái là nợ phình nhanh: nợ xấu, nợ nhóm 2, lãi dự thu đều tăng, CASA giảm, và phải gọi vốn liên tục. Giá hiện…"},{"nganh":"Ngân hàng","ma":"STB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Yếu kém","vung":"Giữa","c1":"Một phần","c2":"Một phần","c3":"Có","c4":"Không","c5":"Một phần","diem":5,"gia":66.6,"so_voi_dinh":-14.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, STB là bank nhóm 2 không có \"bố\" Nhà nước. Ngân hàng đang được NHNN dẫn qua chặng cuối tái cơ cấu, giá được neo bởi câu chuyện đấu giá 32,5% và đổi chủ. Nợ và vốn cho thấy tình trạng yếu: nợ xấu 7,3%, nhóm 2 tăng gần 4 lần, bao phủ 35%, vốn cấp 2 lãi 10%, NII giảm một phần ba. Giá đang ở vùng…"},{"nganh":"Ngân hàng","ma":"SHB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Sân sau","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Một phần","c5":"Một phần","diem":6,"gia":10.45,"so_voi_dinh":-38.9,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"SHB là ngân hàng 'sân sau' của T&T, nhóm 2 top ngành, đang ở pha tăng nợ và tăng vốn mạnh. BCTC Q3 đẹp về lợi nhuận nhưng xấu dần ở chất lượng nợ (nhóm 2) và chi phí vốn. Giá đã rơi 39% từ đỉnh và đang 'tự giảm' vì bồn tín dụng cạn và nguồn cung cổ phiếu mới treo trên đầu."},{"nganh":"Ngân hàng","ma":"LPB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Sân sau","vung":"Giữa","c1":"Một phần","c2":"Một phần","c3":"Có","c4":"Chưa rõ","c5":"Không","diem":4,"gia":34.7,"so_voi_dinh":-38,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, LPB là ngân hàng 'sân sau' của nhóm cổ đông tư nhân (hệ ông Thụy, thêm vợ chồng ông Phạm Nhật Vượng khoảng 9,86% từ 6/2026), không có 'bố' Nhà nước. Ngân hàng đang ở pha nợ phình nhanh: cho vay +23%, nguồn vốn đắt, vốn cổ phần không tăng. Nợ nhóm 2 và nợ xấu tăng, lợi nhuận được đỡ bằng phí dịch…"},{"nganh":"Ngân hàng","ma":"VIB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Giữa","c1":"Không","c2":"Một phần","c3":"Một phần","c4":"Một phần","c5":"Không","diem":3,"gia":13.9,"so_voi_dinh":-15.3,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"VIB là ngân hàng bán lẻ tư nhân, không có bảo trợ Nhà nước, đang mở rộng tín dụng bằng vốn vay (trái phiếu, vay quốc tế) nhanh hơn tiền gửi tăng, trong khi chất lượng con nợ xấu dần. Giá được giữ quanh giá trị sổ sách nhờ nhu cầu huy động vốn, nhưng chưa có điều kiện để được kéo lên, vì bồn tín dụng toàn thị trường…"},{"nganh":"Tập đoàn tư nhân đa ngành","ma":"VIC","ngay_bao_cao":"2026-10-30","nhom":"Nhóm 1 · trụ","vi_the_no":"Con nợ ruột","vung":"Đỉnh","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":9,"gia":241,"so_voi_dinh":-5.9,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, VIC là con nợ ruột thuộc nhóm trụ. Giá do nhóm Phạm Nhật Vượng (VIG) và các chủ nợ kiểm soát, và họ cần giá cao vì cổ phiếu là tài sản đảm bảo cho hơn 355 nghìn tỷ nợ cùng các đợt đảo nợ 2026-2027. Vòi tín dụng chọn lọc vẫn mở, nhưng giá đang ở vùng đỉnh mà H đã cảnh báo (tháng 9/2026), tin tốt…"},{"nganh":"Tập đoàn tư nhân đa ngành","ma":"MSN","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":9,"gia":69.4,"so_voi_dinh":-17.5,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, MSN là trụ nhóm 1 và là con nợ ruột trong hệ sinh thái Techcombank. Masan đang ở pha 'năng suất tăng thì nợ tăng': có thặng dư thật từ vonfram và tiêu dùng, nợ vay khoảng 69.700 tỷ vẫn tăng, và đang bán tài sản (MSR) để mua thêm tài sản sinh tiền (MCH). Người định giá có động cơ cần giá cao trong…"},{"nganh":"Tập đoàn tư nhân đa ngành","ma":"GEX","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Có","c4":"Một phần","c5":"Có","diem":8,"gia":21.5,"so_voi_dinh":-40.6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, GEX là con nợ top ngành có tiền thật từ mảng điện và vẫn được ngân hàng cho vay. Nhưng doanh nghiệp vừa đi qua đỉnh của một chu kỳ vay và tăng vốn, nên giá đang tự giảm vì người kiểm soát định giá chưa cần giá cao."},{"nganh":"Tập đoàn tư nhân đa ngành","ma":"VJC","ngay_bao_cao":"2026-10-30","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Một phần","c5":"Một phần","diem":8,"gia":131.6,"so_voi_dinh":-21.9,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"Theo khung của H, VJC là mã nhóm 2 và là con nợ ruột trong hệ Sovico–HDBank. DN đang cần vay rất lớn và vẫn được cho vay, nên giá được giữ ở vùng giữa (117–150), không tự rơi. Nhưng dòng tiền tự do âm, phải thu phình và lãi mỏng cho thấy sức bền phụ thuộc hoàn toàn vào vòi tín dụng. Bồn tín dụng chung mới 1/5 và…"},{"nganh":"Tập đoàn tư nhân đa ngành","ma":"TCH","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Giữa","c1":"Một phần","c2":"Có","c3":"Một phần","c4":"Có","c5":"Một phần","diem":7,"gia":11.95,"so_voi_dinh":-37.3,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"TCH là DN bất động sản Hải Phòng do gia đình ông Đỗ Hữu Hạ kiểm soát (khoảng 36% kể cả HH Finance). DN sạch nợ ngân hàng, đang ghi nhận lãi lớn nhờ bàn giao, nhưng đốt đệm tiền nhanh và vừa nhận dự án mới khoảng 8.000 tỷ. Theo H, đây là 'con nợ mới tiềm năng', sắp quay lại cần vốn. Giá đang hồi có lực từ vùng giữa,…"},{"nganh":"Tập đoàn tư nhân đa ngành","ma":"HAG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":9,"gia":13.75,"so_voi_dinh":-27.1,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, HAG là 'con nợ ruột' đã được xóa bớt nợ cũ và đang được cấp nợ mới để trồng cà phê. Lợi nhuận năm 2026 đẹp chủ yếu nhờ xóa lãi và bán cổ phần HGI, còn tiền mặt cạn (87 tỷ) và doanh nghiệp vẫn phải vay tiếp. Người định giá là bầu Đức cùng hệ OCB; họ đang dùng HGI làm công cụ huy động vốn chính, nên…"},{"nganh":"Bất động sản","ma":"VHM","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Một phần","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":8,"gia":61.9,"so_voi_dinh":-21.6,"bctc":"Không có PDF","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, VHM là con nợ ruột thuộc nhóm trụ, đang được mở vòi tín dụng chọn lọc để gánh các siêu dự án hạ tầng. Giá được quyết định bởi Vingroup và nhóm tạo lập. BCTC kỷ lục ra khi giá đã rời đỉnh 21,6% và thị trường ở vùng giữa trên đường xuống, nên đây chưa phải tín hiệu vùng mua."},{"nganh":"Bất động sản","ma":"VRE","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Một phần","c4":"Có","c5":"Có","diem":7,"gia":23.15,"so_voi_dinh":-37.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"VRE là DN cho thuê có tiền thật, ít nợ, không cần vay. Theo H, đây là cổ phiếu cô đặc mà định giá nằm trong tay hệ Vingroup. Tiền của VRE đang được dùng làm vốn cho các dự án của tập đoàn (23,8 nghìn tỷ đặt cọc). Giá 23,15 đang sát PB 1 lần, thị trường ở vùng giữa trên đường đi xuống, bồn tín dụng mới đạt 1/5. Hiện…"},{"nganh":"Bất động sản","ma":"NLG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Một phần","c5":"Có","diem":7,"gia":20.9,"so_voi_dinh":-44.2,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, NLG là DN nợ ít, tiền nhiều nhưng không có nhu cầu vay lớn, nên không có ai cần định giá cao. Giá đã giảm 44% từ đỉnh, thủng đáy 60 phiên và nằm dưới giá chào bán 25.000đ. BCTC Q3 xấu đúng vùng đáy, nhưng bồn tín dụng chung chưa đầy và khối ngoại đang rút."},{"nganh":"Bất động sản","ma":"KDH","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Đáy","c1":"Có","c2":"Có","c3":"Có","c4":"Một phần","c5":"Một phần","diem":8,"gia":13,"so_voi_dinh":-59.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo khung của H, KDH là 'con nợ mới tiềm năng' được ngân hàng (VietinBank, MB, OCB) chọn để cho vay làm dự án trọng điểm. Nợ vay tăng từ 10.149 tỷ lên 17.776 tỷ trong 9 tháng, kèm 13.500 tỷ hạn mức mới. Tuy vậy, cổ phiếu chưa được 'định giá lên' vì bồn tín dụng toàn thị trường mới đạt 1/5 tín hiệu. Lợi nhuận chủ…"},{"nganh":"Bất động sản","ma":"DXG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Một phần","diem":7,"gia":9.9,"so_voi_dinh":-44,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"DXG là cổ phiếu BĐS nhóm 2 theo phân loại của H. Doanh nghiệp đang vay để làm dự án (The Privé), được ngân hàng tư nhân (VPBank, MB) cho vay có thế chấp. Giá về mệnh giá, BCTC xấu, nội bộ gom: theo H, đây là dáng 'xấu ở đáy'. Tuy vậy xu hướng (60%) chưa ủng hộ, vì bồn tín dụng mới đạt 1/5 tín hiệu và margin toàn…"},{"nganh":"Bất động sản","ma":"NVL","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ghẻ","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Có","c5":"Không","diem":7,"gia":10.25,"so_voi_dinh":-45.9,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, NVL là cổ phiếu nhóm 2 nhiều nợ, ở vị thế con nợ đang đảo nợ: vay tăng, dòng tiền âm, cầm cố dày, gọi 8.000 tỷ từ cổ đông để trả nợ quá hạn. Giá hiện do nhóm chủ nợ và gia đình chi phối giữ quanh 10.000 để đợt chào bán thành công. Đây là giữ giá để huy động, chưa phải chu kỳ 'nhận vốn' mới."},{"nganh":"Bất động sản","ma":"PDR","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Có","c5":"Không","diem":7,"gia":11.05,"so_voi_dinh":-52.1,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo khung của H, PDR là 'con nợ mới tiềm năng' đang được bơm tín dụng chọn lọc cho dự án Thủ Thiêm cùng Lotte. Đổi lại, nợ vay đã tăng gấp 2,3 lần, lên 13.638 tỷ, trong khi chưa có thặng dư từ kinh doanh. Giá gần mệnh giá và đã thủng đáy: đây là vùng giá đáy, nhưng thời điểm chưa đến vì bồn tín dụng toàn thị…"},{"nganh":"Bất động sản","ma":"DIG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Không","c4":"Một phần","c5":"Một phần","diem":5,"gia":9.5,"so_voi_dinh":-52.8,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, DIG là cổ phiếu nhóm 2 BĐS đã giảm hơn 50% sau đợt xả margin của cổ đông chi phối. Doanh nghiệp tự gọn nợ nhờ tiền cổ đông và tiền đặt cọc, nhưng hiện không có ai vừa cần vừa đủ lực để định giá cao. Giá ở vùng đáy, còn chu kỳ tín dụng thì chưa mở."},{"nganh":"Khu công nghiệp","ma":"KBC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Đáy","c1":"Có","c2":"Có","c3":"Có","c4":"Một phần","c5":"Không","diem":7,"gia":26.25,"so_voi_dinh":-30.9,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo khung của H, KBC là cổ phiếu nhóm 2 top ngành khu công nghiệp, nợ nhiều nên giá lên xuống mạnh. Giá do nhóm ông Đặng Thành Tâm cùng các chủ nợ lớn (VPBank, nhóm hợp vốn quốc doanh) chi phối. Hai bên này cần giá được giữ để còn vay tiếp và để tài sản cầm cố không mất giá. DN đang ở pha 'vay để mở rộng' của chu…"},{"nganh":"Khu công nghiệp","ma":"IDC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Giữa","c1":"Có","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Có","diem":8,"gia":33.2,"so_voi_dinh":-26.5,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"Theo khung của H, IDC là con nợ tiềm năng được ngân hàng quốc doanh cho vay dài hạn để mở KCN, có cash thật (tiền gửi lớn hơn nợ vay) nhưng dòng tiền năm 2026 yếu. Người định giá là nhóm SSG/Bách Việt cùng ngân hàng. Họ không cần giá cao vì DN không gọi vốn tiền mặt, nên giá đang tự trôi ở vùng giữa theo thị trường."},{"nganh":"Khu công nghiệp","ma":"SZC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Không","c5":"Có","diem":6,"gia":19.25,"so_voi_dinh":-45,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"SZC là con nợ ruột của Sonadezi/Nhà nước Đồng Nai và BIDV. Nợ vay 2.365 tỷ (0,77 lần vốn chủ) đang giảm, dòng tiền kinh doanh 9 tháng 620 tỷ là tiền thật, nhưng lợi nhuận kế toán giảm 76%. Theo H, người kiểm soát định giá chưa cần giá cao, vì không vay mở rộng và không tăng vốn. Giá vì thế 'tự giảm' 45% và chỉ hồi…"},{"nganh":"Khu công nghiệp","ma":"BCM","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Đáy","c1":"Có","c2":"Có","c3":"Có","c4":"Một phần","c5":"Không","diem":7,"gia":37.1,"so_voi_dinh":-52.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo H, BCM là con nợ ruột thuộc nhóm 2 (DN Nhà nước làm KCN và hạ tầng). Nợ vay 26.259 tỷ, phải đảo liên tục, và ngân hàng vẫn đang mở vòi. Dòng tiền thật thì yếu: lãi vay phải trả vượt lợi nhuận gộp, lợi nhuận chủ yếu là ghi sổ từ liên kết. Giá đã về vùng đáy 35–37. Người kiểm soát định giá là Nhà nước, và họ chỉ…"},{"nganh":"Khu công nghiệp","ma":"GVR","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Một phần","c4":"Có","c5":"Có","diem":7,"gia":29.6,"so_voi_dinh":-35.3,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"GVR là DN có 'bố' Nhà nước, rất ít nợ, nhiều tiền thật. Theo khung của H đây là cổ phiếu cô đặc: giá không cần cao vì DN không cần vay. Giá chỉ được kéo khi Nhà nước có deal cơ cấu vốn hoặc khi cần trụ đỡ chỉ số. Hiện tin tốt dồn dập nhưng giá vẫn giảm, thị trường ở vùng giữa trên đường xuống, bồn tín dụng mới 1/5…"},{"nganh":"Khu công nghiệp","ma":"VGC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Một phần","c2":"Một phần","c3":"Một phần","c4":"Có","c5":"Có","diem":7,"gia":40,"so_voi_dinh":-26.6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, VGC là doanh nghiệp làm thật, ăn thật, gần chuẩn 'kiểu FPT' về nợ [H20]: vay 5.251 tỷ, tiền gửi 3.530 tỷ, lãi vay được che phủ ~13 lần. Nhưng đây cũng là cổ phiếu cô đặc do Gelex và Bộ Xây dựng nắm ~89%. Hiện không ai cần giá cao: không tăng vốn, không vay gấp, thoái vốn lùi sang 2026-2030. Vì vậy…"},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"VCG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Một phần","c2":"Không","c3":"Một phần","c4":"Một phần","c5":"Có","diem":5,"gia":15.2,"so_voi_dinh":-31.3,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, VCG là mã top ngành xây dựng đang ở thế cô đặc. Nợ vay giảm còn 6.073 tỷ (0,47 lần vốn chủ), DN không cần vay hay gọi vốn, còn cho bên ngoài vay khoảng 6.300 tỷ. Pacific Holdings chi phối nhưng chưa cần giá cao, nên giá tự giảm từ đỉnh lãi đột biến và chỉ hồi theo cớ hợp đồng cao tốc. Điểm cần soi…"},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"HHV","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Có","c5":"Một phần","diem":8,"gia":9.27,"so_voi_dinh":-32.6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo khung của H, HHV là DN hạ tầng BOT, 'con nợ ruột' của VietinBank và Nhà nước trong mảng dự án trọng điểm. Gốc vay được trả đều, nhưng lãi vay đang dồn lại với khoảng 7.000 tỷ chưa trả. DN cần tăng vốn tiếp (57,5 triệu cp riêng lẻ, giá ≥10.000). Giá 9,27 dưới mệnh giá, gần đáy, dù tin tốt dồn dập. Người định…"},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"CII","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Có","c5":"Một phần","diem":8,"gia":12.95,"so_voi_dinh":-52.4,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"Theo khung của H, CII là con nợ lớn ở top ngành hạ tầng (nhóm 2). Nợ tăng nhanh, thu phí BOT chỉ vừa đủ trả lãi, và DN đang liên tục cần tiền mới cho cả dự án lẫn đảo nợ. Ngân hàng còn cho vay theo dự án, nhưng kênh cổ đông đã nghẽn, và chính cổ đông Nhà nước HFIC cũng muốn rút. Giá 12,95 nằm sát các mốc chuyển đổi…"},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"C4G","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Trung tính","vung":"Đáy","c1":"Một phần","c2":"Một phần","c3":"Không","c4":"Không","c5":"Không","diem":2,"gia":4.5,"so_voi_dinh":-50.5,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, C4G là mã nhóm 3, DN xây lắp hạ tầng với khoảng 2.900 tỷ nợ vay đi ngang, chủ yếu từ BIDV Nghệ An. Vòi tín dụng không mở thêm, không có nhu cầu tăng vốn công khai, không có cớ, và cash thật không đủ trả lãi. Không ai cần giá cao nên giá tự trôi về khoảng 4,5 (P/B 0,4). Điểm cần soi kỹ nhất là hơn…"},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"FCN","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Con nợ mới tiềm năng","vung":"Đáy","c1":"Một phần","c2":"Có","c3":"Một phần","c4":"Có","c5":"Một phần","diem":7,"gia":10.85,"so_voi_dinh":-34.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, FCN là con nợ đang xin vốn: nợ vay 4.409 tỷ tăng trở lại, 66% là ngắn hạn, và công ty sắp phát hành 875 tỷ cổ phiếu để trả nợ ngân hàng. Người cần định giá cao chính là FECON, trong cửa sổ quý 4/2026 đến quý 2/2027. Kinh doanh hồi phục thật nhờ các dự án hạ tầng trọng điểm, nhưng thặng dư tiền mặt…"},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"LCG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Trung tính","vung":"Đáy","c1":"Một phần","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Một phần","diem":6,"gia":6.36,"so_voi_dinh":-38.6,"bctc":"Không có PDF","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, LCG là nhà thầu đầu tư công nhóm 3, vị thế nợ trung tính. DN cần vốn để chạy backlog lớn nhưng kênh cổ phần đang đóng, vốn trông vào tạm ứng Nhà nước và vay ngắn hạn. Lãi chưa thành tiền. Không có cổ đông chi phối hay ngân hàng nào cần giá cao, nên giá nằm ở vùng đáy và tự trôi."},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"CTD","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":9,"gia":65.5,"so_voi_dinh":-26.2,"bctc":"Q4/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"Theo khung của H, CTD là cổ phiếu nhóm 2 top ngành ở vị thế 'con nợ mới tiềm năng'. Công ty được ngân hàng và trái chủ cho vay thêm (nợ vay tăng 2,1 lần lên khoảng 8.000 tỷ) và gắn với dự án trọng điểm của Vingroup/VinSpeed, nhưng chưa có thặng dư tiền mặt bền: CFO thất thường, phải thu khoảng 16.000 tỷ. Giá ở vùng…"},{"nganh":"Hạ tầng, xây dựng, đầu tư công","ma":"PC1","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Có","diem":8,"gia":15.957,"so_voi_dinh":-41.5,"bctc":"Chọn nhầm (riêng 2025)","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, PC1 là cổ phiếu nhóm 2 đang bị siết nợ một phần và đổi người kiểm soát định giá: CII và hệ VietinBank thay cho nhóm sáng lập bị khởi tố. Doanh nghiệp vẫn có cash thật. Giá ở vùng đáy nhưng chưa có ai cần kéo giá."},{"nganh":"Vật liệu xây dựng, thép","ma":"HPG","ngay_bao_cao":"2026-11-03","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Một phần","c2":"Có","c3":"Có","c4":"Có","c5":"Có","diem":9,"gia":21.05,"so_voi_dinh":-19.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"HPG là con nợ ruột thuộc nhóm 2 top ngành. Nợ đạt kỷ lục 105.737 tỷ, nhưng dòng tiền kinh doanh đủ trả lãi khoảng 4,6 lần, và doanh nghiệp được ưu tiên tín dụng nhờ dự án trọng điểm cùng khoản nộp ngân sách lớn. BCTC đẹp, nhưng thị trường đang ở giai đoạn chờ, margin ở đỉnh, lãnh đạo bán lẻ tẻ. Vì vậy nhóm định giá…"},{"nganh":"Vật liệu xây dựng, thép","ma":"HSG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Giữa","c1":"Có","c2":"Có","c3":"Một phần","c4":"Có","c5":"Một phần","diem":8,"gia":10.7,"so_voi_dinh":-19.6,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"HSG không phải cổ phiếu 'cô đặc' mà là con nợ nhóm 2 đang mở rộng bằng vay ngắn hạn. Chủ nợ là ngân hàng quốc doanh, người quyết định là Chủ tịch Lê Phước Vũ. Cái cớ lợi nhuận đã có, nhưng còn thiếu dòng vốn mới và thiếu bồn tín dụng đầy. Theo khung của H, mã này đang ở vùng giữa, chờ tín hiệu."},{"nganh":"Vật liệu xây dựng, thép","ma":"NKG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Có","c5":"Một phần","diem":8,"gia":12.1,"so_voi_dinh":-22.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, NKG là con nợ nhóm 2 đang mở rộng: được ngân hàng quốc doanh cho vay thêm để chạy nhà máy mới. Nhưng DN có 'vết' khi dùng tiền vay cho Chủ tịch PDR vay và đặt cọc bất động sản, và dòng tiền thật mỏng. Nhịp hồi 32% từ đáy đi kèm 'cớ' dồn dập ngay trước ĐHĐCĐ bất thường, trong khi bồn tín dụng thị…"},{"nganh":"Vật liệu xây dựng, thép","ma":"HT1","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Có","c4":"Có","c5":"Có","diem":9,"gia":12.8,"so_voi_dinh":-26.9,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"HT1 là DN Nhà nước ở trạng thái 'cô đặc': ít nợ, cash thật, BCTC đẹp, nhưng không có ai cần định giá cao. Theo khung của H, giá sẽ dao động theo 'cớ' và theo thị trường chung chứ khó có sóng lớn, cho đến khi xuất hiện nhu cầu vay hoặc vốn (dự án lớn, Vicem thoái vốn)."},{"nganh":"Vật liệu xây dựng, thép","ma":"KSB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Con nợ mới tiềm năng","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Không","diem":6,"gia":12.3,"so_voi_dinh":-35.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, KSB là cổ phiếu nhóm 3 của một DN đang cần vốn gấp: tiền mặt còn 19,6 tỷ, dòng tiền kinh doanh 9 tháng âm 229 tỷ, đang chờ chào bán 1:1 giá 10.000 đ, và VietinBank đảo hạn khoản vay chính. Người cần giá cao (DRH và ban lãnh đạo) hiện chưa đủ lực kéo giá, và bồn tín dụng mới 1/5 tín hiệu, nên giá…"},{"nganh":"Vật liệu xây dựng, thép","ma":"DHA","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Không","c4":"Một phần","c5":"Có","diem":5,"gia":55.9,"so_voi_dinh":-14.2,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"DHA là DN đá xây dựng cô đặc: không nợ, nhiều tiền, chia cổ tức. Theo khung của H, không chủ nợ hay ngân hàng nào cần định giá nó cao. Người kiểm soát định giá (FICO, khoảng 24,6%) đang gom chậm ở giá thấp. Đợt tăng gần đây dựa trên cớ lãi quý 3, trong đó khoảng 43 tỷ là khoản thuế nộp thừa ghi nhận một lần."},{"nganh":"Năng lượng, điện, dầu khí","ma":"GAS","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Có","c4":"Có","c5":"Có","diem":9,"gia":75.4,"so_voi_dinh":-39.7,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, GAS là cổ phiếu trụ nhóm 1, cô đặc. PVN kiểm soát định giá, DN không cần vay hay tăng vốn, tiền thật dồi dào. Giá chỉ tăng khi có 'cớ' (giá dầu, thoái vốn, LNG) hoặc khi cần kéo điểm, rồi tự giảm dần. Hiện GAS ở vùng giữa: đã hồi từ 62,6 lên 75,4, BCTC đẹp kỷ lục, tin tốt dồn dập, nhưng thanh…"},{"nganh":"Năng lượng, điện, dầu khí","ma":"POW","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Có","diem":10,"gia":12,"so_voi_dinh":-27.5,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"POW là con nợ ruột của hệ thống năng lượng Nhà nước. Doanh nghiệp vừa hoàn tất tăng vốn và vay lớn cho Nhơn Trạch 3&4, có cash thật và lợi nhuận tốt, nhưng lợi nhuận đang bị EVN giữ ở dạng phải thu. Giá tự giảm thủng 12 trong lúc tin tốt dồn dập và thị trường chung siết margin."},{"nganh":"Năng lượng, điện, dầu khí","ma":"REE","ngay_bao_cao":"2026-10-30","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Có","diem":8,"gia":45.5,"so_voi_dinh":-27,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"REE là DN có cash thật, nợ thấp, vay để mở rộng. Định giá nằm trong tay Jardine, gia đình Mai Thanh và các ngân hàng quốc doanh. Hiện tại họ chưa cần giá cao, room ngoại đã kín, và bồn tín dụng chung mới đạt 1/5, nên theo H giá tự trôi về vùng đáy 43,85-45 bất chấp BCTC đẹp."},{"nganh":"Năng lượng, điện, dầu khí","ma":"PLX","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Có","c4":"Có","c5":"Có","diem":9,"gia":33,"so_voi_dinh":-50.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"PLX là cổ phiếu Nhà nước đầu ngành, 'cô đặc', có tiền ròng. Nợ vay ngắn hạn tăng chỉ để quay vòng tồn kho, được ngân hàng quốc doanh cho vay với chi phí thấp. Theo khung của H, giá do Nhà nước và nhóm tạo lập quyết định. DN không có nhu cầu vay dài hạn hay tăng vốn, nên giá nằm ở vùng đáy dù lợi nhuận quý 3 gấp…"},{"nganh":"Năng lượng, điện, dầu khí","ma":"PVS","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Một phần","c4":"Có","c5":"Có","diem":7,"gia":29.8,"so_voi_dinh":-34.5,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"PVS là doanh nghiệp Nhà nước chi phối, 'cô đặc': rất ít nợ, có cash thật, backlog lớn nhờ dự án trọng điểm và hợp đồng ngoại tệ. Theo khung của H, không có con nợ nào cần đẩy giá PVS lên để vay. Giá do PVN, quỹ ngoại và ETF quyết định, nên tin tốt chỉ là 'cớ'. Giá hiện 29,8, đã giảm 34,5% từ đỉnh, trong khi thị…"},{"nganh":"Năng lượng, điện, dầu khí","ma":"BSR","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Có","c4":"Có","c5":"Có","diem":9,"gia":26.3,"so_voi_dinh":-29.7,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"BSR là doanh nghiệp Nhà nước cô đặc, giàu tiền, lợi nhuận đang ở đỉnh chu kỳ lọc dầu. Người kiểm soát định giá là PVN, và họ chỉ cần giá cao trong cửa sổ thoái vốn 2-5% và lúc huy động vốn cho dự án NCMR. Theo khung của H, BCTC quý 3 kỷ lục kèm giá giảm là tín hiệu 'đẹp ở đỉnh', chưa phải vùng mua."},{"nganh":"Năng lượng, điện, dầu khí","ma":"GEG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Con nợ ruột","vung":"Đáy","c1":"Có","c2":"Có","c3":"Có","c4":"Một phần","c5":"Có","diem":9,"gia":11.45,"so_voi_dinh":-29.9,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"GEG là con nợ được VCB nuôi theo từng dự án: nợ vay khoảng 8.597 tỷ, tài sản cố định gần như cầm cố hết, đang mở rộng VPL 2. Dòng tiền thật đủ trả lãi nhưng biên mỏng. Giá dưới giá trị sổ sách và tự trôi vì nhóm TTC và AVH không cần giá cao, còn thị trường chung đang ở giai đoạn chờ."},{"nganh":"Năng lượng, điện, dầu khí","ma":"NT2","ngay_bao_cao":"2026-11-04","nhom":"Chưa rõ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Một phần","c4":"Có","c5":"Có","diem":7,"gia":21.8,"so_voi_dinh":-21.3,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"NT2 là DN cô đặc, tiền thật, ít nợ, do PV Power (Nhà nước) kiểm soát và nằm giữa PV GAS với EVN. Theo khung của H, không ai có động cơ định giá NT2 cao lâu dài. Giá chỉ hồi theo cớ: lãi quý III gấp đôi nhờ khấu hao giảm, cổ tức 10%, khuyến nghị mua dồn dập. Hiện giá ở vùng giữa, mạnh hơn thị trường nhờ vai trò trú…"},{"nganh":"Công nghệ, viễn thông, quốc phòng","ma":"FPT","ngay_bao_cao":"2026-10-30","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Đáy","c1":"Một phần","c2":"Không","c3":"Một phần","c4":"Một phần","c5":"Có","diem":5,"gia":52.7,"so_voi_dinh":-44.6,"bctc":"Không có PDF","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"FPT có nền tài chính rất khỏe: ít nợ, nhiều tiền, lãi kỷ lục. Theo khung của H, đó lại là cổ phiếu 'cô đặc', không ai cần định giá cao. Sau vai trò trụ năm 2024, FPT đang bị người định giá chính là khối ngoại xả. Giá ở đáy 3 năm, nhưng chưa có dấu hiệu bên kiểm soát định giá quay lại."},{"nganh":"Công nghệ, viễn thông, quốc phòng","ma":"CTR","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Có","c4":"Một phần","c5":"Có","diem":7,"gia":65.6,"so_voi_dinh":-30.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, CTR là doanh nghiệp làm thật ăn thật, gần với 'chuẩn FPT' [H20] về nợ. Nhưng chính vì cô đặc, không cần vay và không cần tăng vốn tiền mặt, mà không ai cần giữ giá cao. Viettel kiểm soát định giá và không có nhu cầu huy động. Giá vì vậy trôi theo thị trường và đã thủng đáy 60 phiên trong bối cảnh…"},{"nganh":"Công nghệ, viễn thông, quốc phòng","ma":"VGI","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Có","c4":"Một phần","c5":"Có","diem":8,"gia":74,"so_voi_dinh":-44.5,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"VGI là DN có tiền thật, ít nợ, do Viettel nắm 99%. Theo khung của H, đây là cổ phiếu cô đặc: người định giá (Viettel) đã lấy tiền qua cổ tức 10.045 tỷ và không cần giá cao, nên giá tự trôi, hiện ở 74 (-44,5% từ đỉnh) và đang thử đáy 71,7. Nợ vay tăng 38% trong năm nhưng là vay để mở rộng mạng tại Tanzania và châu…"},{"nganh":"Công nghệ, viễn thông, quốc phòng","ma":"CMG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Đáy","c1":"Một phần","c2":"Có","c3":"Có","c4":"Không","c5":"Có","diem":7,"gia":17.5,"so_voi_dinh":-53.8,"bctc":"Q1/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"Theo khung của H, CMG là con nợ mới có tiềm năng. Tín dụng chọn lọc đã mở cho CMG (trái phiếu 10 năm 5,5% có ADB bảo lãnh), và tiền đang đổ vào hạ tầng AI/data center. Nhưng giá cổ phiếu chưa được ai cần định giá cao: vốn nợ đã gom xong, thị trường ở vùng giữa đi xuống, khối ngoại rút. Giá về đáy 5 năm (17,5), Chủ…"},{"nganh":"Công nghệ, viễn thông, quốc phòng","ma":"ELC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Trung tính","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Có","c5":"Có","diem":8,"gia":10.6,"so_voi_dinh":-57.6,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"ELC là doanh nghiệp công nghệ ít nợ, có tiền, sống nhờ hợp đồng đầu tư công. Nhưng doanh nghiệp đã đem tiền và tài sản thế chấp vào bất động sản (Tây Hồ Tây, Phúc Diễn) và cho bên ngoài vay. Theo khung của H, không có chủ nợ, ngân hàng hay Nhà nước nào cần định giá ELC cao lúc này. Doanh nghiệp không cần đảo nợ,…"},{"nganh":"Công nghệ, viễn thông, quốc phòng","ma":"FOX","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Đáy","c1":"Có","c2":"Không","c3":"Có","c4":"Một phần","c5":"Có","diem":7,"gia":53.5,"so_voi_dinh":-47.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"FOX là doanh nghiệp tốt, có tiền thật, nợ vay nhỏ hơn tiền gửi. Nhưng theo khung của H, đây là cổ phiếu cô đặc do Nhà nước (Bộ Công an 50,17%) và FPT (45,66%) nắm gần hết, không ai cần định giá cao, nên giá đã 'tự giảm' 48% từ đỉnh dù lãi tăng 14%. Vị thế: 'cô đặc', không phải con nợ, cũng không cần được cứu."},{"nganh":"Hàng không, cảng, logistics","ma":"ACV","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Có","c5":"Có","diem":8,"gia":39,"so_voi_dinh":-37.2,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, ACV là trụ nhóm 1, cô đặc, do Nhà nước kiểm soát. Không ai cần định giá cao lâu dài, nên giá tự trôi về vùng đáy quanh 38-39. Cớ tiếp theo là Long Thành khai thác ngày 24/12/2026."},{"nganh":"Hàng không, cảng, logistics","ma":"HVN","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Có","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Có","diem":8,"gia":21,"so_voi_dinh":-33.8,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"Theo khung của H, HVN là con nợ ruột của Nhà nước, đã qua giai đoạn được cứu và đang chuẩn bị bước vào chu kỳ nợ mới (đội bay 737-8, tăng vốn đợt 2 tối đa 13.000 tỷ, Long Thành). Người kiểm soát định giá là Nhà nước (khoảng 86%, số cũ). Họ chỉ cần giá cao quanh thời điểm chào bán đợt 2. Hiện giá đang tự trôi ở vùng…"},{"nganh":"Hàng không, cảng, logistics","ma":"GMD","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Có","c5":"Có","diem":8,"gia":49.7,"so_voi_dinh":-13.6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, GMD là cổ phiếu top ngành cảng nhưng đang ở trạng thái 'cô đặc': ít nợ, nhiều tiền, không cần huy động vốn từ thị trường. Giá vừa tăng theo cớ (lãi kỷ lục, thưởng cổ phiếu 50%) lên đỉnh 57,5 rồi tự giảm về 49,7. Không ai cần giữ giá GMD cao vào lúc này. Câu chuyện chỉ đổi khi công ty bước vào chu…"},{"nganh":"Hàng không, cảng, logistics","ma":"VSC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ghẻ","vung":"Giữa","c1":"Một phần","c2":"Có","c3":"Một phần","c4":"Có","c5":"Một phần","diem":7,"gia":12.9,"so_voi_dinh":-53.1,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"VSC là DN cảng có lõi kinh doanh tốt nhưng đang ở pha đảo nợ: vay khoảng 8.465 tỷ, dòng tiền kinh doanh âm, mua chứng khoán bằng vay ngắn hạn, sắp pha loãng khoảng 50% và phát hành thêm khoảng 2.500 tỷ trái phiếu. Theo khung của H, người kiểm soát định giá là chủ nợ và nhóm vốn liên quan. Họ chỉ cần giá đủ để huy…"},{"nganh":"Hàng không, cảng, logistics","ma":"SCS","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Cô đặc","vung":"Đáy","c1":"Có","c2":"Không","c3":"Một phần","c4":"Không","c5":"Có","diem":5,"gia":39.3,"so_voi_dinh":-27.6,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"SCS là doanh nghiệp tiền mặt dồi dào, gần như không nợ (nợ ròng âm khoảng 1.594 tỷ). Dòng tiền thật và cổ tức cao, nhưng theo khung của H đó là cổ phiếu cô đặc: không ai cần định giá cao lâu dài. Giá hiện tự trôi về vùng đáy 12 tháng vì tăng trưởng suy yếu và bóng sân bay Long Thành."},{"nganh":"Hàng không, cảng, logistics","ma":"HAH","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Đáy","c1":"Có","c2":"Có","c3":"Có","c4":"Một phần","c5":"Có","diem":9,"gia":46.2,"so_voi_dinh":-32.3,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"HAH là con nợ 'ruột' đang mở rộng: VietinBank vừa bảo lãnh vừa là cổ đông lớn nhất, nợ vay 2.599 tỷ đi vào tàu, và dòng tiền thật đủ trả lãi khoảng 16 lần. Giá 46,2 nằm gần đáy và gần giá vốn của quỹ VietinBank. Thị trường vẫn ở giai đoạn chờ, nên theo khung của H thì xu hướng của DN tốt nhưng thời điểm của thị…"},{"nganh":"Bán lẻ, tiêu dùng","ma":"MWG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Một phần","c2":"Một phần","c3":"Có","c4":"Có","c5":"Có","diem":8,"gia":72.3,"so_voi_dinh":-20.6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, MWG là DN đầu ngành có cash thật, được ngân hàng cho vay tín chấp. Bản thân công ty mẹ đã cô đặc: không cần vay để sống, vừa gọi 13.235 tỷ qua DMX. Người cần định giá cao lúc này là DMX và sắp tới có thể là BHX, chưa phải MWG. Giá MWG vì vậy đi theo cớ và theo dòng tiền ngoại/tự doanh, đang ở vùng…"},{"nganh":"Bán lẻ, tiêu dùng","ma":"FRT","ngay_bao_cao":"2026-10-30","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":9,"gia":147.7,"so_voi_dinh":-11.6,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"Theo H, FRT là con nợ mới có năng suất tăng, thuộc nhóm 2 top ngành. Ngân hàng vẫn cho vay tín chấp, nhóm FPT và các quỹ có lý do giữ giá cao vì Long Châu. Tuy vậy, giá đã hồi 40% từ đáy trên nền BCTC đẹp và tin tốt dồn dập, dòng tiền kinh doanh đang âm, và thị trường chung ở pha margin đỉnh. Vì vậy FRT đang ở vùng…"},{"nganh":"Bán lẻ, tiêu dùng","ma":"PNJ","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ghẻ","vung":"Đáy","c1":"Có","c2":"Có","c3":"Một phần","c4":"Không","c5":"Một phần","diem":6,"gia":14.75,"so_voi_dinh":-82.6,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"PNJ đang ở pha bị siết trong chu kỳ nợ của H. Công ty lỗ hai quý, dòng tiền âm khoảng 4.400 tỷ, phải vay Chủ tịch 700 tỷ, thế chấp tồn kho 5.111 tỷ và cần tới 550 triệu cổ phiếu mới, trong khi cổ phiếu của gia đình Chủ tịch bị giải chấp và quỹ ngoại tháo chạy. Giá -82,6% là kết quả của bán bắt buộc. Hiện chưa có…"},{"nganh":"Bán lẻ, tiêu dùng","ma":"VNM","ngay_bao_cao":"2026-10-30","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Một phần","c4":"Có","c5":"Có","diem":7,"gia":57.7,"so_voi_dinh":-18.8,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"VNM là cổ phiếu trụ nhóm 1 \"cô đặc\": ít nợ, nhiều tiền, chia gần hết lợi nhuận cho SCIC và F&N. Theo khung của H, không ai cần định giá VNM cao lâu dài vì DN không cần vay và không cần tăng vốn. Giá đi ngang và trôi dần, chỉ bật theo \"cớ\" (deal ngoại, thoái vốn, ETF) hoặc khi được dùng làm trụ đỡ chỉ số. BCTC đang…"},{"nganh":"Bán lẻ, tiêu dùng","ma":"SAB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Không","c4":"Một phần","c5":"Có","diem":5,"gia":41.95,"so_voi_dinh":-16.5,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"SAB là cổ phiếu cô đặc nhóm 1, tiền mặt ròng khoảng 19.200 tỷ, không có nhu cầu vay. Giá do ThaiBev và SCIC chi phối. Hai cổ đông này ưu tiên rút cổ tức hơn là cần thị giá cao, nên giá chủ yếu tự trôi theo thị trường và khối ngoại, được đỡ bởi cổ tức. Chỉ một 'deal' (SCIC thoái vốn, bán đất) mới cần đến việc định…"},{"nganh":"Bán lẻ, tiêu dùng","ma":"DGW","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":9,"gia":38.4,"so_voi_dinh":-28.2,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Có","tom_tat":"DGW là con nợ vốn lưu động được ngân hàng ưu ái (tín chấp, lãi 7-8%), làm thật ăn thật nhưng chưa thu được tiền và có một túi đầu tư tài chính rủi ro. Người định giá là nhóm Chủ tịch (32%) và khối ngoại, hiện chưa có nhu cầu kéo giá. Giá đang tự giảm theo thị trường 'vùng giữa' khi bồn tín dụng mới đạt 1/5."},{"nganh":"Bán lẻ, tiêu dùng","ma":"MCH","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 1 · trụ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Có","c4":"Có","c5":"Có","diem":8,"gia":133.5,"so_voi_dinh":-25.5,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"MCH là cổ phiếu cô đặc, kinh doanh tạo tiền thật, do Masan kiểm soát khoảng 75% và dùng làm nguồn cash, nền tín dụng cho cả tập đoàn. Theo khung của H, giá MCH không do lợi nhuận quyết định mà do Masan và dòng vốn ngoại. Hiện khối ngoại xả, Masan đỡ, bồn tín dụng toàn thị trường mới đạt 1/5, nên đây là vùng giữa…"},{"nganh":"Chứng khoán","ma":"SSI","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Giữa","c1":"Một phần","c2":"Chưa rõ","c3":"Một phần","c4":"Một phần","c5":"Có","diem":5,"gia":19.15,"so_voi_dinh":-28.9,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, SSI đang ở pha sau đỉnh của chu kỳ margin. Công ty đã tăng vốn ở đỉnh, cash nhà đầu tư rút, môi giới giảm 62%, nợ vay ngắn hạn 51.904 tỷ với chi phí tăng. Giá đã giảm 29% nhưng mới ở vùng giữa: margin toàn thị trường chưa xả, bồn tín dụng mới 1/5. Nội bộ đang giữ giá, nhưng chưa có ai cần hay đủ…"},{"nganh":"Chứng khoán","ma":"VND","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Sân sau","vung":"Giữa","c1":"Một phần","c2":"Một phần","c3":"Có","c4":"Một phần","c5":"Có","diem":7,"gia":13.05,"so_voi_dinh":-35.4,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"VND là CTCK nhóm 2, sân sau của Tập đoàn I.P.A, đang ở pha co nợ: vay giảm khoảng 10.000 tỷ, margin giảm, tiền nhà đầu tư -41%, môi giới -70%, LNST Q3 -65%. Theo khung của H, không ai cần định giá VND cao lúc này, vì không có kế hoạch tăng vốn hay vay mới, và bồn tín dụng mới đạt 1/5 tín hiệu. Giá đang tự giảm và…"},{"nganh":"Chứng khoán","ma":"VCI","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Trung tính","vung":"Đáy","c1":"Một phần","c2":"Một phần","c3":"Một phần","c4":"Một phần","c5":"Có","diem":6,"gia":18.95,"so_voi_dinh":-36.9,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, VCI là CTCK nhóm 2 không có \"bố\" ngân hàng hay Nhà nước. Công ty đang tăng nợ ngắn hạn (chủ yếu từ ngân hàng ngoại) để nuôi margin đúng lúc cash thị trường rút. Lợi nhuận còn đẹp nhờ lãi margin và phí IB, nhưng vốn chủ co lại và chi phí vốn tăng gấp đôi. Giá đã về vùng thấp 3 năm nhưng đang \"tự…"},{"nganh":"Chứng khoán","ma":"HCM","ngay_bao_cao":"2026-10-30","nhom":"Nhóm 2 · top ngành","vi_the_no":"Có bố","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Có","c4":"Một phần","c5":"Có","diem":8,"gia":23.05,"so_voi_dinh":-13,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, HCM là CTCK nhóm 2 có 'bố' (Dragon Capital và HFIC), đang ở pha cuối chu kỳ nợ: cho vay margin chạm trần 200% vốn chủ, phải tăng vốn liên tục, doanh thu môi giới giảm 70% và chi phí vay tăng. Giá hiện được giữ quanh 23.000 đ vì cổ đông chi phối cần hoàn tất đợt chào bán 4.600 tỷ. Đây không phải…"},{"nganh":"Chứng khoán","ma":"VIX","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Sân sau","vung":"Giữa","c1":"Một phần","c2":"Một phần","c3":"Có","c4":"Một phần","c5":"Có","diem":7,"gia":11.8,"so_voi_dinh":-47.3,"bctc":"Q2/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, VIX là CTCK 'sân sau' thuộc nhóm 2. Công ty đã tăng vốn ở vùng cao bằng tiền của khoảng 130.000 cổ đông nhỏ, rồi dồn tiền vào cổ phiếu của hệ sinh thái và của các ngân hàng chủ nợ. Hiện người kiểm soát không cần giá cao, margin toàn thị trường còn ở đỉnh, và bồn tín dụng mới đạt 1/5. Giá VIX đang…"},{"nganh":"Chứng khoán","ma":"SHS","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Sân sau","vung":"Giữa","c1":"Có","c2":"Có","c3":"Một phần","c4":"Một phần","c5":"Có","diem":8,"gia":12.3,"so_voi_dinh":-44.1,"bctc":"Q2/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"SHS là CTCK sân sau của hệ SHB/T&T. Năm 2026 công ty gấp đôi nợ ngắn hạn để tăng margin lên khoảng 12 nghìn tỷ và ôm thêm trái phiếu của chính các ngân hàng cho mình vay. Lợi nhuận giảm khoảng 55%, môi giới thu hẹp, giá đã mất 44%. Theo khung của H, đây là cổ phiếu nhóm 2 nợ nhiều, đang 'tự giảm' trong pha margin…"},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"VHC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Có","c4":"Không","c5":"Có","diem":7,"gia":48.05,"so_voi_dinh":-30.6,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"VHC là DN đầu ngành cá tra, dạng cô đặc, gia đình chi phối và còn tiền ròng. Theo H, không ai cần định giá cao khi DN không cần vay bằng cổ phiếu, nên giá đang tự giảm về vùng giá trị sổ sách cùng BCTC xấu và thị trường yếu. Nợ ngân hàng tăng nhanh và dòng tiền kinh doanh yếu là điểm cần canh, nhưng chưa phải con…"},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"ANV","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ mới tiềm năng","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Có","c4":"Một phần","c5":"Có","diem":8,"gia":16.9,"so_voi_dinh":-42,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, ANV là DN gia đình kiểm soát. DN làm ăn thật, có ngoại tệ, được ngân hàng (cả ngoại) cho vay vốn lưu động ở mức vừa sức. DN không cần tăng vốn và không có trái phiếu, nên chưa có 'người cần giá cao'. Giá đang ở vùng thấp, được gia đình giữ. Cổ phiếu chỉ hồi theo 'cớ' cho đến khi bồn tín dụng toàn…"},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"MSH","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Có","c4":"Một phần","c5":"Có","diem":8,"gia":35,"so_voi_dinh":-11.1,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, MSH là DN làm thật ăn thật, ở vị thế 'cô đặc': không cần tăng vốn, vay ngân hàng quốc doanh theo mùa với lãi rẻ, tiền ròng khoảng 0. Gia đình Bùi và FPTS kiểm soát định giá nhưng không có nhu cầu giá cao. Vì vậy giá chỉ nhích theo 'cớ' như mùa cao điểm và cổ tức, rồi tự giảm về nền, không được kéo…"},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"TNG","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Con nợ ruột","vung":"Giữa","c1":"Có","c2":"Có","c3":"Có","c4":"Có","c5":"Một phần","diem":9,"gia":18.1,"so_voi_dinh":-26.8,"bctc":"Q3/2026 · riêng","bctc_q3_hop_nhat":false,"ung_vien":"Có","tom_tat":"TNG là cổ phiếu nhóm 2, con nợ đang được ngân hàng quốc doanh ở Thái Nguyên nới hạn mức: nợ vay khoảng 4.194 tỷ, gấp 2,06 lần vốn chủ. Lãi kỷ lục nhưng tiền thuần từ kinh doanh 9 tháng âm 696 tỷ, nên lãi vay và cổ tức đang được trả bằng tiền vay. Người kiểm soát định giá là gia đình chủ (khoảng 30%), các ngân hàng…"},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"DGC","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 2 · top ngành","vi_the_no":"Cô đặc","vung":"Đáy","c1":"Có","c2":"Một phần","c3":"Một phần","c4":"Một phần","c5":"Có","diem":7,"gia":32.85,"so_voi_dinh":-58.6,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"Theo khung của H, DGC là DN 'cô đặc', nhiều tiền, ít nợ, hiện không có chủ nợ hay nhà tạo lập nào cần giá cao. Giá đang tự trôi về vùng giá trị sổ sách trong lúc rủi ro pháp lý chưa khép lại, và vòi margin bị đóng."},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"PHR","ngay_bao_cao":"2026-11-04","nhom":"Chưa rõ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Một phần","c3":"Không","c4":"Có","c5":"Có","diem":7,"gia":29.05,"so_voi_dinh":-24.9,"bctc":"Q2/2026 · hợp nhất","bctc_q3_hop_nhat":false,"ung_vien":"Không","tom_tat":"PHR là doanh nghiệp tiền mặt dày, ít nợ, do VRG (Nhà nước) chi phối. Lợi nhuận 2026 phình nhờ đền bù đất. Không có chủ nợ nào cần giá cao, nên giá chỉ tăng theo cớ, và cớ đã được dùng ở vùng 33-38."},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"DPR","ngay_bao_cao":"2026-11-04","nhom":"Chưa rõ","vi_the_no":"Cô đặc","vung":"Giữa","c1":"Có","c2":"Không","c3":"Một phần","c4":"Có","c5":"Có","diem":7,"gia":37,"so_voi_dinh":-22.1,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"DPR là DN cô đặc, Nhà nước (GVR) nắm quyền định giá và không cần giá cao. DN lãi thật, có tiền thật, không có nợ. Nhưng theo H, chính vì không cần vay nên cổ phiếu chỉ chạy theo 'cớ' (thưởng 1:1, cổ tức, giá cao su), không có sóng chu kỳ nợ."},{"nganh":"Xuất khẩu, thu ngoại tệ","ma":"PTB","ngay_bao_cao":"2026-11-04","nhom":"Nhóm 3","vi_the_no":"Con nợ mới tiềm năng","vung":"Đáy","c1":"Có","c2":"Có","c3":"Có","c4":"Một phần","c5":"Có","diem":9,"gia":29.8,"so_voi_dinh":-32.9,"bctc":"Q3/2026 · hợp nhất","bctc_q3_hop_nhat":true,"ung_vien":"Không","tom_tat":"Theo khung của H, PTB là con nợ có tài sản, đang vay để mở rộng, được ngân hàng quốc doanh cấp vốn có thế chấp, và có cash thật để trả lãi. Giá do nhóm sáng lập kiểm soát. Họ đã kéo giá lên đỉnh khi cần vốn (tháng 2/2026) và hiện để giá tự giảm về dưới giá trị sổ sách. Cổ phiếu ở vùng đáy của chu kỳ cũ và chờ 'ngày…"}]};
+window.dash = (() => {
+  const calcs = {}, draws = {}, ons = [];
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const colors = dark ? ['#6ea8fe','#f0a35e','#7ed3a1','#e58bb0','#b39bf2','#5fc9c9','#d9c36a','#a7adb8'] : ['#2f6fdb','#d9772b','#2f9e63','#c4497d','#7a59d6','#1f9a9a','#a88a1d','#6b7280'];
+  const data = (id) => {
+    if (__DATA[id]) return {status:'ok', data: __DATA[id], columns: Object.keys(__DATA[id][0]||{})};
+    const c = calcs[id];
+    if (c) { if (!c.cache) c.cache = c.fn(...c.inputs.map((i) => data(i).data)); return {status:'ok', data:c.cache}; }
+    return {status:'missing', data:[]};
+  };
+  const run = (name) => document.querySelectorAll(`[data-draw="${name}"]`).forEach((el) => draws[name](el));
+  const all = () => { ons.forEach((f) => f()); Object.keys(draws).forEach(run); };
+  addEventListener('resize', () => { clearTimeout(window.__rt); window.__rt = setTimeout(all, 150); });
+  addEventListener('DOMContentLoaded', all);
+  return {
+    colors, data,
+    calc: (id, o) => { calcs[id] = {...o}; },
+    draw: (name, fn) => { if (typeof fn === 'function') draws[name] = fn; else if (draws[name] && document.readyState !== 'loading') run(name); },
+    onData: (fn) => ons.push(fn),
+    params: () => ({}), setParams(){}, resetParams(){}, setLink(){}, refresh(){}, loader(){},
+  };
+})();
+</script>
+
+</head><body><p style="font:14px -apple-system,sans-serif;max-width:1400px;margin:12px auto 0;padding:0 max(16px,3vw)"><a href="../">← Trang chủ</a></p><div id="dash-root">
+
+<style>
+.hm-wrap{display:flex;flex-direction:column;gap:var(--cds-gap-lg);font-family:var(--font-anthropic-sans)}
+.hm-head h1{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0;text-wrap:balance}
+.hm-lede{margin:var(--cds-gap-xs) 0 0;color:var(--color-fg-muted);max-width:72ch;line-height:1.5}
+.hm-wrap .hm-lede b{color:var(--color-fg);font-weight:600;font-variant-numeric:tabular-nums}
+.hm-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:var(--cds-gap-md)}
+.hm-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs);min-width:0}
+.hm-tile .lbl{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.hm-tile .num{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;line-height:1.1}
+.hm-tile .note{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.hm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:var(--cds-gap-md)}
+.hm-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.hm-card h2{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0}
+.hm-card .sub{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:0;line-height:1.5}
+.hm-dots{position:relative;min-height:28rem}
+.hm-dots svg{display:block}
+.hm-dots .ax text{fill:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.hm-dots .lab{fill:var(--color-fg);font-size:var(--cds-font-size-caption)}
+.hm-dots circle{cursor:pointer}
+.hm-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);max-width:16rem;line-height:1.45;z-index:2}
+.hm-tip .t2{color:var(--cds-text-secondary)}
+.hm-legend{display:flex;flex-wrap:wrap;gap:var(--cds-gap-md);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);align-items:center}
+.hm-legend span{display:inline-flex;align-items:center;gap:var(--cds-gap-xs)}
+.hm-sw{display:inline-block;width:.6rem;height:.6rem;border-radius:50%}
+.hm-sw.ring{background:transparent;border:1.5px solid var(--color-fg)}
+.hm-sw.giua{background:var(--cds-chart-muted)}
+.hm-sw.dinh{background:var(--cds-chart-status-critical)}
+.hm-uvt{width:100%;border-collapse:collapse;font-size:var(--cds-font-size-caption)}
+.hm-uvt th{text-align:left;color:var(--color-fg-muted);font-weight:500;padding:var(--cds-pad-xs) var(--cds-pad-sm) var(--cds-pad-xs) 0;border-bottom:1px solid var(--color-border-line)}
+.hm-uvt td{padding:var(--cds-pad-xs) var(--cds-pad-sm) var(--cds-pad-xs) 0;border-bottom:1px solid var(--color-border-line);vertical-align:top}
+.hm-uvt td.day{font-weight:600}
+.hm-rule{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:0;line-height:1.5}
+.hm-ctrl{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm);align-items:center}
+.hm-ctrl select,.hm-ctrl input[type=search]{font:inherit;font-size:var(--cds-font-size-caption);padding:var(--cds-pad-xs) var(--cds-pad-sm);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background:var(--color-bg);color:var(--color-fg);max-width:100%}
+.hm-ctrl input[type=search]{min-width:0;flex:1 1 10rem}
+.hm-ctrl label.chk{display:inline-flex;gap:var(--cds-gap-xs);align-items:center;font-size:var(--cds-font-size-caption)}
+.hm-count{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.hm-tblbox{overflow:auto;max-height:70vh;border-top:1px solid var(--color-border-line)}
+.hm-tbl{border-collapse:collapse;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums;width:100%}
+.hm-tbl th{position:sticky;top:0;background:var(--color-panel);text-align:left;font-weight:500;color:var(--color-fg-muted);border-bottom:1px solid var(--color-border-line);padding:0;z-index:1;white-space:nowrap}
+.hm-tbl th button{all:unset;cursor:pointer;display:block;padding:var(--cds-pad-xs) var(--cds-pad-sm)}
+.hm-tbl th button:focus-visible{outline:2px solid var(--color-fg);outline-offset:-2px}
+.hm-tbl th[aria-sort=ascending] button::after{content:" ↑"}
+.hm-tbl th[aria-sort=descending] button::after{content:" ↓"}
+.hm-tbl td{padding:var(--cds-pad-xs) var(--cds-pad-sm);border-bottom:1px solid var(--color-border-line);vertical-align:top;white-space:nowrap}
+.hm-tbl td.c-ma{font-weight:600}
+.hm-tbl tr.uv td.c-ma{color:var(--color-ok)}
+.hm-tbl td.num{text-align:right}
+.hm-tbl td.c-tom_tat{white-space:normal;min-width:18rem;max-width:30rem;cursor:pointer}
+.hm-tbl td.c-tom_tat .clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hm-tbl td.c-tom_tat.open .clamp{display:block}
+.hm-tbl td.c-nganh{white-space:normal;min-width:8rem}
+.hm-chip{display:inline-flex;align-items:center;gap:4px;padding:0 6px;border-radius:999px;border:1px solid var(--color-border-line);white-space:nowrap}
+.v-co{color:var(--color-ok)}.v-mot{color:var(--color-warn)}.v-khong{color:var(--color-bad)}.v-chua{color:var(--color-fg-muted)}
+.hm-score{display:inline-flex;align-items:center;gap:6px}
+.hm-score .bar{display:inline-block;height:6px;border-radius:3px;background:var(--cds-chart-muted)}
+.hm-tbl tr.uv .hm-score .bar{background:var(--color-ok)}
+.neg{color:var(--color-bad)}
+.hm-foot{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:0;line-height:1.5;max-width:80ch}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+@media (max-width:640px){.hm-tbl .c-nhom,.hm-tbl .c-ngay_bao_cao{display:none}}
+</style>
+
+<div class="hm-wrap">
+  <header class="hm-head">
+    <h1 id="tieu-de">Bản đồ 87 mã theo H</h1>
+    <p class="hm-lede">Trong <b data-draw="tong" data-source="tong_hop" data-field="tong">—</b> mã đã có báo cáo, <b data-draw="uv" data-source="tong_hop" data-field="ung_vien">—</b> mã là ứng viên được rót vốn khi bồn tín dụng đầy, và <b data-draw="uvday" data-source="tong_hop" data-field="ung_vien_day">—</b> mã trong số đó đang ở vùng đáy. Theo H, ngân hàng nhóm 2 tăng trước, sau đó lần lượt đến thép, chứng khoán, dầu khí, rồi bất động sản và hạ tầng.</p>
+  </header>
+
+  <section class="hm-tiles" aria-label="Tổng quan">
+    <div class="hm-tile"><span class="lbl">Ứng viên khi bồn đầy</span><span class="num dash-skeleton" data-draw="t-uv" data-source="tong_hop" data-field="ung_vien">—</span><span class="note">Nhóm 2, đang cần vay và được ngân hàng cho vay</span></div>
+    <div class="hm-tile"><span class="lbl">Ứng viên ở vùng đáy</span><span class="num dash-skeleton" data-draw="t-uvday" data-source="tong_hop" data-field="ung_vien_day">—</span><span class="note">Nhóm nên theo dõi trước</span></div>
+    <div class="hm-tile"><span class="lbl">Cô đặc</span><span class="num dash-skeleton" data-draw="t-codac" data-source="tong_hop" data-field="co_dac">—</span><span class="note">Ít nợ, nhiều tiền, chưa cần giá cao</span></div>
+    <div class="hm-tile"><span class="lbl">Báo cáo tài chính chưa phải hợp nhất quý 3</span><span class="num dash-skeleton" data-draw="t-lech" data-source="tong_hop" data-field="bctc_lech">—</span><span class="note">Nên chạy lại khi có báo cáo mới</span></div>
+  </section>
+
+  <section class="hm-grid">
+    <div class="hm-card" id="bieu-do-diem">
+      <h2>Điểm theo 5 câu hỏi của H, từng ngành</h2>
+      <p class="sub">Mỗi chấm là một mã, điểm từ 0 đến 10 ("có" = 2, "một phần" = 1). Màu chấm cho biết vùng giá, chấm có viền đậm là ứng viên. Bấm vào một chấm để xem mã đó trong bảng.</p>
+      <div class="hm-legend">
+        <span><i class="hm-sw day"></i>Vùng đáy</span>
+        <span><i class="hm-sw giua"></i>Vùng giữa</span>
+        <span><i class="hm-sw dinh"></i>Vùng đỉnh</span>
+        <span><i class="hm-sw ring"></i>Ứng viên khi bồn đầy</span>
+      </div>
+      <div class="hm-dots dash-skeleton" data-draw="dots" data-source="stocks"></div>
+    </div>
+
+    <div class="hm-card" id="ung-vien">
+      <h2>Ứng viên khi bồn đầy, theo ngành</h2>
+      <p class="sub">Ngành xếp theo thứ tự trong danh sách theo dõi. Cột giữa là các mã đang ở vùng đáy.</p>
+      <div style="overflow-x:auto">
+        <table class="hm-uvt" data-source="ung_vien_nganh" data-row-key="nganh">
+          <thead><tr><th data-field="nganh">Ngành</th><th data-field="vung_day">Ở vùng đáy</th><th data-field="con_lai">Vùng giữa hoặc đỉnh</th></tr></thead>
+          <tbody data-draw="uvt"></tbody>
+        </table>
+      </div>
+      <p class="hm-rule">Tiêu chí lọc ứng viên do Claude đặt dựa trên khung của H. Mã phải thuộc nhóm 2. Với ngân hàng, cần là ngân hàng "có bố". Với doanh nghiệp, cần là con nợ ruột hoặc con nợ mới tiềm năng, và câu 2 "cần vay hoặc tăng vốn trong 6–12 tháng" được trả lời là có.</p>
+    </div>
+  </section>
+
+  <section class="hm-card" id="bang-ma">
+    <h2>Bảng 87 mã</h2>
+    <p class="sub">Câu hỏi với doanh nghiệp: 1. Ai đứng sau, ai là chủ nợ; 2. Có cần vay hoặc tăng vốn không; 3. Ngân hàng có đang cho vay không; 4. Có "cái cớ" (tin tốt) để đẩy giá không; 5. Có tiền mặt thật để trả lãi không. Ngân hàng dùng bộ câu hỏi riêng: bố là ai, room và vốn, huy động có nhanh hơn cho vay không, con nợ ruột hay ghẻ, nhiệm vụ Nhà nước. Bấm vào ô tóm tắt để đọc hết.</p>
+    <div class="hm-ctrl">
+      <select id="hm-f-nganh" aria-label="Ngành" data-draw="f-nganh" data-source="stocks"></select>
+      <select id="hm-f-vung" aria-label="Vùng giá">
+        <option value="">Mọi vùng giá</option>
+        <option value="Đáy">Vùng đáy</option>
+        <option value="Giữa">Vùng giữa</option>
+        <option value="Đỉnh">Vùng đỉnh</option>
+      </select>
+      <select id="hm-f-no" aria-label="Vị thế nợ" data-draw="f-no" data-source="stocks"></select>
+      <label class="chk"><input type="checkbox" id="hm-f-uv"> Chỉ ứng viên</label>
+      <input type="search" id="hm-q" placeholder="Tìm mã hoặc nội dung tóm tắt" aria-label="Tìm">
+      <span class="hm-count"><b data-draw="shown">—</b> mã đang hiển thị</span>
+    </div>
+    <div class="hm-tblbox">
+      <table class="hm-tbl" data-source="stocks" data-row-key="ma">
+        <thead><tr>
+          <th data-field="ma" class="c-ma"><button type="button" data-sort="ma">Mã</button></th>
+          <th data-field="nganh" class="c-nganh"><button type="button" data-sort="nganh">Ngành</button></th>
+          <th data-field="nhom" class="c-nhom"><button type="button" data-sort="nhom">Nhóm H</button></th>
+          <th data-field="vi_the_no"><button type="button" data-sort="vi_the_no">Vị thế nợ</button></th>
+          <th data-field="vung"><button type="button" data-sort="vung">Vùng</button></th>
+          <th data-field="c1"><button type="button" data-sort="c1">Câu 1</button></th>
+          <th data-field="c2"><button type="button" data-sort="c2">Câu 2</button></th>
+          <th data-field="c3"><button type="button" data-sort="c3">Câu 3</button></th>
+          <th data-field="c4"><button type="button" data-sort="c4">Câu 4</button></th>
+          <th data-field="c5"><button type="button" data-sort="c5">Câu 5</button></th>
+          <th data-field="diem" aria-sort="descending"><button type="button" data-sort="diem">Điểm</button></th>
+          <th data-field="gia"><button type="button" data-sort="gia">Giá 3/11</button></th>
+          <th data-field="so_voi_dinh"><button type="button" data-sort="so_voi_dinh">So với đỉnh 12 tháng</button></th>
+          <th data-field="bctc"><button type="button" data-sort="bctc">Báo cáo tài chính</button></th>
+          <th data-field="ung_vien"><button type="button" data-sort="ung_vien">Ứng viên</button></th>
+          <th data-field="ngay_bao_cao" class="c-ngay_bao_cao"><button type="button" data-sort="ngay_bao_cao">Ngày chạy</button></th>
+          <th data-field="tom_tat" class="c-tom_tat"><button type="button" data-sort="tom_tat">Tóm tắt</button></th>
+        </tr></thead>
+        <tbody data-draw="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="hm-foot">Số liệu lấy từ các báo cáo tạo bằng lệnh <code>npm run company</code> ngày 30/10 đến 4/11/2026, có dùng AI và file PDF báo cáo tài chính trên CafeF. Giá là giá đóng cửa ngày 3/11/2026 trên VNDirect. Đây là cách đọc theo khung của H, không phải khuyến nghị đầu tư.</p>
+</div>
+
+<script>
+(() => {
+  const ZONE = () => ({'Đáy': dash.colors[0], 'Giữa': 'var(--cds-chart-muted)', 'Đỉnh': 'var(--cds-chart-status-critical)'});
+  const fmtGia = d3.format(',.2~f');
+  const fmtPct = (v) => (v > 0 ? '+' : '') + d3.format('.1f')(v) + '%';
+  const fmtDate = (s) => { const p = String(s).split('-'); return p.length === 3 ? `${p[2]}/${p[1]}` : s; };
+  const ANS = {'Có': 'v-co', 'Một phần': 'v-mot', 'Không': 'v-khong'};
+
+  dash.calc('tong_hop', {
+    inputs: ['stocks'],
+    title: 'Đếm theo nhóm lọc',
+    description: 'Đếm số mã, số ứng viên, số ứng viên ở vùng đáy, số mã cô đặc và số mã chưa dùng báo cáo hợp nhất quý 3.',
+    fn: (stocks) => [{
+      tong: stocks.length,
+      ung_vien: stocks.filter((r) => r.ung_vien === 'Có').length,
+      ung_vien_day: stocks.filter((r) => r.ung_vien === 'Có' && r.vung === 'Đáy').length,
+      co_dac: stocks.filter((r) => r.vi_the_no === 'Cô đặc').length,
+      bctc_lech: stocks.filter((r) => r.bctc_q3_hop_nhat !== true).length,
+    }],
+  });
+
+  dash.calc('ung_vien_nganh', {
+    inputs: ['stocks'],
+    title: 'Ứng viên theo ngành',
+    description: 'Gom các mã ứng viên theo ngành, tách mã đang ở vùng đáy ra một cột.',
+    fn: (stocks) => {
+      const order = []; const g = {};
+      for (const r of stocks) {
+        if (r.ung_vien !== 'Có') continue;
+        if (!g[r.nganh]) { g[r.nganh] = []; order.push(r.nganh); }
+        g[r.nganh].push(r);
+      }
+      return order.map((n) => ({
+        nganh: n,
+        vung_day: g[n].filter((r) => r.vung === 'Đáy').map((r) => r.ma).join(', '),
+        con_lai: g[n].filter((r) => r.vung !== 'Đáy').map((r) => r.ma).join(', '),
+      }));
+    },
+  });
+
+  const st = {nganh: '', vung: '', no: '', uv: false, q: '', sort: 'diem', dir: -1};
+
+  const one = (name, field) => dash.draw(name, (el) => {
+    const d = dash.data('tong_hop');
+    el.textContent = d.status === 'ok' && d.data[0] ? d3.format(',')(d.data[0][field]) : '—';
+  });
+  one('tong', 'tong'); one('uv', 'ung_vien'); one('uvday', 'ung_vien_day');
+  one('t-uv', 'ung_vien'); one('t-uvday', 'ung_vien_day'); one('t-codac', 'co_dac'); one('t-lech', 'bctc_lech');
+
+  dash.onData(() => {
+    const s = dash.data('stocks').status;
+    const t = dash.data('tong_hop').status;
+    document.querySelectorAll('.hm-tile .num').forEach((el) => el.classList.toggle('dash-skeleton', t === 'loading'));
+    document.querySelectorAll('.hm-dots').forEach((el) => el.classList.toggle('dash-skeleton', s === 'loading'));
+    document.querySelectorAll('.hm-sw.day').forEach((el) => { el.style.background = dash.colors[0]; });
+  });
+
+  dash.draw('uvt', (tb) => {
+    const d = dash.data('ung_vien_nganh');
+    if (d.status !== 'ok') { tb.replaceChildren(); return; }
+    tb.replaceChildren(...d.data.map((r) => {
+      const tr = document.createElement('tr');
+      const a = document.createElement('td'); a.textContent = r.nganh;
+      const b = document.createElement('td'); b.className = 'day'; b.textContent = r.vung_day;
+      const c = document.createElement('td'); c.textContent = r.con_lai;
+      tr.append(a, b, c); return tr;
+    }));
+  });
+
+  const opts = (field, all) => (sel) => {
+    const d = dash.data('stocks');
+    const list = d.status === 'ok' ? [...new Set(d.data.map((r) => r[field]).filter(Boolean))] : [];
+    sel.replaceChildren(new Option(all, ''), ...list.map((n) => new Option(n, n)));
+    sel.value = st[field === 'nganh' ? 'nganh' : 'no'];
+  };
+  dash.draw('f-nganh', opts('nganh', 'Tất cả ngành'));
+  dash.draw('f-no', opts('vi_the_no', 'Mọi vị thế nợ'));
+
+  const NUM = new Set(['diem', 'gia', 'so_voi_dinh']);
+  const filtered = () => {
+    const d = dash.data('stocks');
+    if (d.status !== 'ok') return null;
+    const q = st.q.trim().toLowerCase();
+    const rows = d.data.filter((r) =>
+      (!st.nganh || r.nganh === st.nganh) && (!st.vung || r.vung === st.vung) &&
+      (!st.no || r.vi_the_no === st.no) && (!st.uv || r.ung_vien === 'Có') &&
+      (!q || r.ma.toLowerCase().startsWith(q) || (q.length > 3 && r.tom_tat.toLowerCase().includes(q))));
+    const k = st.sort;
+    rows.sort((a, b) => {
+      let c;
+      if (NUM.has(k)) c = (a[k] ?? -Infinity) - (b[k] ?? -Infinity);
+      else c = String(a[k] ?? '').localeCompare(String(b[k] ?? ''), 'vi');
+      return c * st.dir || a.ma.localeCompare(b.ma);
+    });
+    return rows;
+  };
+
+  const COLS = ['ma', 'nganh', 'nhom', 'vi_the_no', 'vung', 'c1', 'c2', 'c3', 'c4', 'c5', 'diem', 'gia', 'so_voi_dinh', 'bctc', 'ung_vien', 'ngay_bao_cao', 'tom_tat'];
+  dash.draw('rows', (tb) => {
+    const rows = filtered();
+    if (!rows) { tb.replaceChildren(); return; }
+    const zone = ZONE();
+    tb.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      if (r.ung_vien === 'Có') tr.className = 'uv';
+      for (const c of COLS) {
+        const td = document.createElement('td');
+        td.className = 'c-' + c;
+        const v = r[c];
+        if (/^c[1-5]$/.test(c)) {
+          const s = document.createElement('span'); s.className = 'hm-chip ' + (ANS[v] || 'v-chua'); s.textContent = v; td.append(s);
+        } else if (c === 'vung') {
+          const s = document.createElement('span'); s.className = 'hm-chip';
+          const i = document.createElement('i'); i.className = 'hm-sw'; i.style.background = zone[v] || 'var(--cds-chart-muted)';
+          s.append(i, document.createTextNode(v)); td.append(s);
+        } else if (c === 'diem') {
+          td.className += ' num';
+          const s = document.createElement('span'); s.className = 'hm-score';
+          const bar = document.createElement('i'); bar.className = 'bar'; bar.style.width = (v * 0.4) + 'rem';
+          s.append(bar, document.createTextNode(String(v))); td.append(s);
+        } else if (c === 'gia') {
+          td.className += ' num'; td.textContent = v == null ? '' : fmtGia(v);
+        } else if (c === 'so_voi_dinh') {
+          td.className += ' num' + (v < 0 ? ' neg' : ''); td.textContent = v == null ? '' : fmtPct(v);
+        } else if (c === 'ngay_bao_cao') {
+          td.textContent = fmtDate(v);
+        } else if (c === 'tom_tat') {
+          const div = document.createElement('div'); div.className = 'clamp'; div.textContent = v; td.append(div);
+          td.addEventListener('click', () => td.classList.toggle('open'));
+        } else {
+          td.textContent = v ?? '';
+        }
+        tr.append(td);
+      }
+      return tr;
+    }));
+  });
+
+  dash.draw('shown', (el) => {
+    const rows = filtered();
+    el.textContent = rows ? String(rows.length) : '—';
+  });
+
+  const redraw = () => { dash.draw('rows'); dash.draw('shown'); };
+  document.querySelectorAll('#hm-f-nganh').forEach((el) => el.addEventListener('change', () => { st.nganh = el.value; redraw(); }));
+  document.querySelectorAll('#hm-f-vung').forEach((el) => el.addEventListener('change', () => { st.vung = el.value; redraw(); }));
+  document.querySelectorAll('#hm-f-no').forEach((el) => el.addEventListener('change', () => { st.no = el.value; redraw(); }));
+  document.querySelectorAll('#hm-f-uv').forEach((el) => el.addEventListener('change', () => { st.uv = el.checked; redraw(); }));
+  document.querySelectorAll('#hm-q').forEach((el) => el.addEventListener('input', () => { st.q = el.value; redraw(); }));
+  document.querySelectorAll('.hm-tbl th button[data-sort]').forEach((btn) => btn.addEventListener('click', () => {
+    const k = btn.dataset.sort;
+    if (st.sort === k) st.dir = -st.dir; else { st.sort = k; st.dir = NUM.has(k) ? -1 : 1; }
+    document.querySelectorAll('.hm-tbl th').forEach((th) => th.removeAttribute('aria-sort'));
+    const th = btn.closest('th'); if (th) th.setAttribute('aria-sort', st.dir > 0 ? 'ascending' : 'descending');
+    dash.draw('rows');
+  }));
+
+  const pick = (ma) => {
+    st.q = ma; st.nganh = ''; st.vung = ''; st.no = ''; st.uv = false;
+    document.querySelectorAll('#hm-q').forEach((el) => { el.value = ma; });
+    document.querySelectorAll('#hm-f-nganh,#hm-f-vung,#hm-f-no').forEach((el) => { el.value = ''; });
+    document.querySelectorAll('#hm-f-uv').forEach((el) => { el.checked = false; });
+    redraw();
+    const t = document.getElementById('bang-ma'); if (t) t.scrollIntoView({behavior: 'smooth', block: 'start'});
+  };
+
+  dash.draw('dots', (box) => {
+    const d = dash.data('stocks');
+    box.replaceChildren();
+    if (d.status !== 'ok') { box.style.minHeight = ''; return; }
+    const zone = ZONE();
+    const W = Math.max(320, box.clientWidth || 600);
+    const sectors = [...new Set(d.data.map((r) => r.nganh))];
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    const meas = svg.append('g').attr('class', 'ax');
+    let maxL = 0;
+    for (const s of sectors) { const t = meas.append('text').text(s); maxL = Math.max(maxL, t.node().getComputedTextLength()); }
+    meas.remove();
+    const m = {l: Math.min(maxL, W * 0.48) + 12, r: 14, t: 6, b: 26};
+    const band = 36;
+    const H = m.t + m.b + band * sectors.length;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    box.style.minHeight = H + 'px';
+    const x = d3.scaleLinear([0, 10], [m.l + 6, W - m.r]);
+    const y = d3.scaleBand(sectors, [m.t, H - m.b]);
+    const ax = svg.append('g').attr('class', 'ax');
+    for (const v of [0, 2, 4, 6, 8, 10]) {
+      ax.append('line').attr('x1', x(v)).attr('x2', x(v)).attr('y1', m.t).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-grid)');
+      ax.append('text').attr('x', x(v)).attr('y', H - 8).attr('text-anchor', 'middle').text(v);
+    }
+    for (const s of sectors) {
+      ax.append('line').attr('x1', 0).attr('x2', W - m.r).attr('y1', y(s) + band).attr('y2', y(s) + band).attr('stroke', 'var(--cds-chart-grid)');
+      const t = ax.append('text').attr('class', 'lab').attr('x', 0).attr('y', y(s) + band / 2).attr('dominant-baseline', 'middle').text(s);
+      let str = s;
+      while (t.node().getComputedTextLength() > m.l - 12 && str.length > 4) { str = str.slice(0, -2); t.text(str + '…'); }
+    }
+    const groups = d3.group(d.data, (r) => r.nganh + '|' + r.diem);
+    const pts = [];
+    for (const [, list] of groups) {
+      const L = [...list].sort((a, b) => (a.ung_vien === 'Có' ? -1 : 1) - (b.ung_vien === 'Có' ? -1 : 1) || a.ma.localeCompare(b.ma));
+      const k = L.length; const gap = k > 1 ? Math.min(8, (band - 12) / (k - 1)) : 0;
+      L.forEach((r, i) => pts.push({r, cx: x(r.diem) + (k > 3 ? (i % 2 ? 4 : -4) : 0), cy: y(r.nganh) + band / 2 + (i - (k - 1) / 2) * gap}));
+    }
+    const tip = document.createElement('div'); tip.className = 'hm-tip'; tip.hidden = true; box.append(tip);
+    const show = (p) => {
+      tip.replaceChildren();
+      const a = document.createElement('div'); const b = document.createElement('b'); b.textContent = p.r.ma; a.append(b, document.createTextNode(' · ' + p.r.diem + '/10'));
+      const n = document.createElement('div'); n.className = 't2'; n.textContent = p.r.nganh;
+      const z = document.createElement('div'); z.textContent = 'Vùng ' + p.r.vung.toLowerCase() + ' · ' + p.r.vi_the_no;
+      tip.append(a, n, z);
+      if (p.r.so_voi_dinh != null) { const g = document.createElement('div'); g.textContent = 'Giá ' + fmtGia(p.r.gia) + ', ' + fmtPct(p.r.so_voi_dinh) + ' so với đỉnh'; tip.append(g); }
+      if (p.r.ung_vien === 'Có') { const u = document.createElement('div'); u.className = 'v-co'; u.textContent = 'Ứng viên khi bồn đầy'; tip.append(u); }
+      tip.hidden = false;
+      const bw = box.clientWidth; const tw = tip.offsetWidth; const th = tip.offsetHeight;
+      const sx = p.cx * (bw / W); const sy = p.cy * (box.querySelector('svg').getBoundingClientRect().height / H);
+      tip.style.left = Math.max(0, Math.min(bw - tw, sx + 10)) + 'px';
+      tip.style.top = Math.max(0, sy - th - 8) + 'px';
+    };
+    svg.append('g').selectAll('circle').data(pts).join('circle')
+      .attr('cx', (p) => p.cx).attr('cy', (p) => p.cy).attr('r', 5)
+      .attr('fill', (p) => zone[p.r.vung] || 'var(--cds-chart-muted)')
+      .attr('fill-opacity', (p) => p.r.ung_vien === 'Có' ? 1 : 0.6)
+      .attr('stroke', (p) => p.r.ung_vien === 'Có' ? 'var(--color-fg)' : 'none')
+      .attr('stroke-width', 1.5)
+      .attr('tabindex', 0).attr('role', 'button').attr('aria-label', (p) => p.r.ma + ', ' + p.r.diem + ' điểm')
+      .on('mouseenter focus', (e, p) => show(p))
+      .on('mouseleave blur', () => { tip.hidden = true; })
+      .on('click keydown', (e, p) => { if (e.type === 'keydown' && e.key !== 'Enter') return; pick(p.r.ma); });
+  });
+})();
+</script>
+
+</div></body></html>
